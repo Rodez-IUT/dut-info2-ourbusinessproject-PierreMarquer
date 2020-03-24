@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,8 +23,12 @@ public class Enterprise {
     private String contactName;
     @NotEmpty @Email
     private String contactEmail;
-    @OneToMany
-    private List<Project> projects;
+    @OneToMany(cascade=CascadeType.ALL)
+    public List<Project> projects;
+
+    public Enterprise(){
+        this.projects = new ArrayList<>();
+    }
 
     public String getName() {
         return name;
@@ -63,5 +68,9 @@ public class Enterprise {
 
     public List<Project> getProjects() {
         return projects;
+    }
+
+    public void addProject(Project aAdd){
+        this.projects.add(aAdd);
     }
 }
