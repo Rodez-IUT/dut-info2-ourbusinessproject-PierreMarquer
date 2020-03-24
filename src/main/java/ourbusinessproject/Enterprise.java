@@ -24,7 +24,7 @@ public class Enterprise {
     @NotEmpty @Email
     private String contactEmail;
     @OneToMany(cascade=CascadeType.ALL)
-    public List<Project> projects;
+    private List<Project> projects;
 
     public Enterprise(){
         this.projects = new ArrayList<>();

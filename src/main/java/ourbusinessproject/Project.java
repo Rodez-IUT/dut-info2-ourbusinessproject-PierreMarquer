@@ -21,7 +21,7 @@ public class Project {
 
     public Project(Enterprise enterprise) {
         this.enterprise = enterprise;
-        this.enterprise.projects.add(this);
+        this.enterprise.addProject(this);
     }
 
     public String getTitle() {
@@ -46,7 +46,7 @@ public class Project {
 
     public void setEnterprise(Enterprise enterprise) {
         this.enterprise = enterprise;
-        this.enterprise.projects.add(this);
+        this.enterprise.addProject(this);
     }
 
     public Enterprise getEnterprise() {
