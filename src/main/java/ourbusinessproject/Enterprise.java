@@ -23,7 +23,7 @@ public class Enterprise {
     private String contactName;
     @NotEmpty @Email
     private String contactEmail;
-    @OneToMany(cascade=CascadeType.ALL)
+    @OneToMany(cascade=CascadeType.ALL) @NotNull
     private List<Project> projects;
 
     public Enterprise(){
@@ -67,7 +67,7 @@ public class Enterprise {
     }
 
     public List<Project> getProjects() {
-        return projects;
+        return projects.isEmpty() ? null : projects;
     }
 
     public void addProject(Project aAdd){
