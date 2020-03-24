@@ -29,7 +29,7 @@ public class EnterpriseProjectServiceIntegrationTest {
     public void setUp() {
 
         // given a a valid project
-        project = new Project();
+        project = new Project(enterprise);
         project.setTitle("A project");
         project.setDescription("Project description");
 
