@@ -26,6 +26,15 @@ public class Project {
         }
     }
 
+    public Project(String title, String description, Enterprise enterprise) {
+        this.enterprise = enterprise;
+        this.title = title;
+        this.description = description;
+        if (enterprise != null){
+            this.enterprise.addProject(this);
+        }
+    }
+
     public String getTitle() {
         return title;
     }

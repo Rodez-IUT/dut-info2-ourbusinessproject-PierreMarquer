@@ -1,11 +1,11 @@
 package ourbusinessproject;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Service
 public class EnterpriseProjectService {
@@ -32,5 +32,9 @@ public class EnterpriseProjectService {
 
     public Enterprise findEnterpriseById(Long anId) {
         return this.entityManager.find(Enterprise.class,anId);
+    }
+
+    public List<Project> findAllProjects() {
+        return this.entityManager.createQuery("SELECT p FROM Project p ORDER BY p.title", Project.class).getResultList();
     }
 }
