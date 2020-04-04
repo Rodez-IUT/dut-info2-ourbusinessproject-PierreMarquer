@@ -23,6 +23,9 @@ public class InitializationService {
 
     @Transactional
     public void initProjects() {
+        // Cette annotation permet de créer une transaction dans la méthode annoté ce qui permet que si une erreur
+        // ce produit un rollback est executé
+
         initEnterprise1();
         initEnterprise2();
 
