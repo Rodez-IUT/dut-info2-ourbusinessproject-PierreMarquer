@@ -14,27 +14,35 @@ public class EnterpriseProjectService {
     private EntityManager entityManager;
 
     public EntityManager getEntityManager() {
-        return this.entityManager;
+        return entityManager;
     }
 
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    public void save(Object aSave) {
-        this.entityManager.persist(aSave);
-        this.entityManager.flush();
+    public void save(Project project) {
+        entityManager.persist(project.getEnterprise());
+        entityManager.persist(project);
+        entityManager.flush();
+    }
+
+    public void save(Enterprise enterprise) {
+        entityManager.persist(enterprise);
+        entityManager.flush();
     }
 
     public Project findProjectById(Long anId) {
-        return this.entityManager.find(Project.class,anId);
+        return entityManager.find(Project.class, anId);
     }
 
     public Enterprise findEnterpriseById(Long anId) {
-        return this.entityManager.find(Enterprise.class,anId);
+        return entityManager.find(Enterprise.class, anId);
     }
 
     public List<Project> findAllProjects() {
-        return this.entityManager.createQuery("SELECT p FROM Project p ORDER BY p.title", Project.class).getResultList();
+        String query = "SELECT p FROM Project p ORDER BY p.title" ;
+        TypedQuery<Project> queryObj = entityManager.createQuery(query,Project.class);
+        return queryObj.getResultList();
     }
 }

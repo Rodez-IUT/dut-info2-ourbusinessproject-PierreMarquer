@@ -27,7 +27,7 @@ public class ProjectTest {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
         // given : a valid project
-        project = new Project(enterprise);
+        project = new Project();
         project.setTitle("A project");
         project.setDescription("Project description");
         project.setEnterprise(enterprise);

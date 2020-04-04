@@ -1,34 +1,35 @@
 package ourbusinessproject;
 
-import org.hibernate.validator.constraints.Length;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+import javax.validation.constraints.Size;
+import java.util.Collection;
 
 @Entity
 public class Enterprise {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue
+    private Long id;
+
     @NotEmpty
     private String name;
-    @NotEmpty @Length(min = 10, message = "The field must be at least 10 characters")
+    @Size(min = 10)
     private String description;
     @NotEmpty
     private String contactName;
     @NotEmpty @Email
     private String contactEmail;
-    @OneToMany(cascade=CascadeType.ALL) @NotNull
-    private List<Project> projects;
 
-    public Enterprise(){
-        this.projects = new ArrayList<>();
-    }
+    @OneToMany(mappedBy = "enterprise")
+    @JsonIgnore
+    private Collection<Project> projects;
 
     public String getName() {
         return name;
@@ -66,11 +67,11 @@ public class Enterprise {
         return id;
     }
 
-    public List<Project> getProjects() {
-        return projects.isEmpty() ? null : projects;
+    public Collection<Project> getProjects() {
+        return projects;
     }
 
-    public void addProject(Project aAdd){
-        this.projects.add(aAdd);
+    public void setProjects(Collection<Project> projects) {
+        this.projects = projects;
     }
 }

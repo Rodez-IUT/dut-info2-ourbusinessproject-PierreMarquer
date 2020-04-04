@@ -24,8 +24,7 @@ public class EnterpriseProjectServiceIntegrationTest {
     @Autowired
     private EnterpriseProjectService enterpriseProjectService;
 
-    @Autowired
-    private Bootstrap bootstrap;
+    @Autowired private Bootstrap bootstrap;
 
     private Project project;
     private Enterprise enterprise;
